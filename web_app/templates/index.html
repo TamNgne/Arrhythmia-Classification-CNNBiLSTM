@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ECG Arrhythmia Classifier</title>
+  <subtitle>12‑Lead &middot; 4‑Class Multi‑Label</subtitle>
+  <subtitle>Tam Nguyen</subtitle>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+</head>
+<body>
+  <!-- ======= HEADER ======= -->
+  <header>
+    <div class="header-inner">
+      <h1>ECG Arrhythmia Classifier</h1>
+      <p class="subtitle">12‑Lead &middot; 4‑Class Multi‑Label</p>
+    </div>
+  </header>
+
+  <main>
+    <!-- ======= UPLOAD CARD ======= -->
+    <section class="card upload-card">
+      <h2>Upload ECG Record</h2>
+      <p class="hint">Select <strong>.hea</strong> + <strong>.dat</strong> files from the same WFDB record.</p>
+
+      <form id="uploadForm" enctype="multipart/form-data">
+        <div class="drop-zone" id="dropZone">
+          <svg width="48" height="48" fill="none" stroke="currentColor" stroke-width="1.5"
+               viewBox="0 0 24 24"><path d="M12 16V4m0 0L8 8m4-4 4 4"/><path d="M20 16v2a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2v-2"/></svg>
+          <p>Drag & drop files here or <span class="browse-link">browse</span></p>
+          <input type="file" 
+                  id="fileInput" 
+                  name="file" 
+                  multiple 
+                  accept=".hea,.dat,.mat" 
+                  hidden />
+        </div>
+        <div id="fileList" class="file-list"></div>
+        <button type="submit" id="submitBtn" class="btn-primary" disabled>
+          <span class="btn-text">🔬 Analyse ECG</span>
+          <span class="spinner hidden"></span>
+        </button>
+      </form>
+    </section>
+
+    <!-- ======= RESULTS (hidden until response) ======= -->
+    <div id="results" class="hidden">
+
+      <!-- metadata -->
+      <section class="card meta-card">
+        <h2>Record Metadata</h2>
+        <div id="metaGrid" class="meta-grid"></div>
+      </section>
+
+      <!-- signal plots -->
+      <section class="card">
+        <h2>Signal Visualization</h2>
+        <div class="tab-bar">
+          <button class="tab active" data-target="rawPlot">Raw Signal</button>
+          <button class="tab" data-target="cleanPlot">Denoised Signal</button>
+        </div>
+        <div id="rawPlot" class="plot-container"><img id="rawImg" alt="raw" /></div>
+        <div id="cleanPlot" class="plot-container hidden"><img id="cleanImg" alt="clean" /></div>
+      </section>
+
+      <!-- predictions -->
+      <section class="card">
+        <h2>Classification Results</h2>
+        <div id="predContainer"></div>
+      </section>
+    </div>
+
+    <!-- error -->
+    <div id="errorBox" class="card error-card hidden">
+      <h2>⚠️ Error</h2>
+      <p id="errorMsg"></p>
+    </div>
+  </main>
+
+  <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+</body>
+</html>

@@ -1,0 +1,114 @@
+# ============================================================
+# Python
+# ============================================================
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+
+# Virtual environments
+.venv/
+venv/
+env/
+ENV/
+
+# Distribution / packaging
+build/
+dist/
+*.egg-info/
+*.egg
+pip-wheel-metadata/
+
+# ============================================================
+# Jupyter / IPython
+# ============================================================
+.ipynb_checkpoints/
+*.ipynb_checkpoints
+
+# ============================================================
+# IDE & editors
+# ============================================================
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+Thumbs.db
+
+# ============================================================
+# Data — DO NOT push (too large + licensed)
+# ============================================================
+data/
+**/WFDBRecords/
+*.hea
+*.mat
+*.dat
+*.npy
+data/denoised_signals/
+data/*.csv
+!data/ConditionNames_SNOMED-CT.csv
+
+# Chapman dataset folders (any naming)
+denoised_output_chapman/
+chapman_dataset/
+**/WFDBRecords/
+*.hea
+*.mat
+*.dat
+*.npy
+
+# ============================================================
+# Model checkpoints (too large for git)
+# ============================================================
+checkpoints/
+Checkpoints/
+*.pth
+*.pt
+*.ckpt
+*.h5
+*.onnx
+
+# ============================================================
+# Web app — uploaded files + cache
+# ============================================================
+web_app/uploads/
+web_app/static/cache/
+
+# ============================================================
+# Results / logs / plots
+# ============================================================
+results/
+logs/
+runs/
+wandb/
+mlruns/
+*.log
+
+# Generated figures (keep ones explicitly under docs/)
+*.png
+*.jpg
+*.jpeg
+*.pdf
+!docs/**/*.pdf
+!docs/**/*.png
+
+# Denoising metrics CSV (regeneratable)
+denoise_metrics.csv
+
+# ============================================================
+# OS-specific junk
+# ============================================================
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# ============================================================
+# Secrets / credentials
+# ============================================================
+.env
+.env.local
+*.key
+*.pem
+secrets.json
