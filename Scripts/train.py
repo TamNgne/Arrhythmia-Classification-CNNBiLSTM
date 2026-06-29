@@ -1,20 +1,23 @@
 import os
 import argparse
 from datetime import datetime
+import sys
 
 import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
-
+from pathlib import Path
 import torch
 import torch.nn as nn
 from torch.utils.data import DataLoader, TensorDataset
 
 from imblearn.combine import SMOTETomek
+APP_DIR  = Path(__file__).resolve().parent          # .../web_app
+BASE_DIR = APP_DIR.parent                            # .../<project_root>
+sys.path.insert(0, str(BASE_DIR))                    # enable top-level imports
 
-# ── Project modules (UNCHANGED class files) ─────────────────────────
-from models.encoder_ECG import ECG_CNN_BiLSTM, ECGResNet, freeze_module
-from dataset.data       import ECGDataset
+from Models.encoder_ECG import ECG_CNN_BiLSTM, ECGResNet, freeze_module
+from Dataset.data       import ECGDataset
 from utils.metrics      import (
     classification_metrics_per_class,
     plot_confusion_matrix,
